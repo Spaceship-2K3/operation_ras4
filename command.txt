@@ -1,0 +1,26 @@
+import RPi.GPIO as GPIO
+import time
+
+# Sử dụng kiểu đánh số GPIO (BCM)
+GPIO.setmode(GPIO.BCM)
+
+# Đặt chân GPIO 17 là chân xuất (output)
+GPIO.setup(17, GPIO.OUT)
+
+# Bật và tắt LED nối với GPIO 17
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)  # Bật LED
+        print("LED ON")
+        time.sleep(1)               # Đợi 1 giây
+        GPIO.output(17, GPIO.LOW)   # Tắt LED
+        print("LED OFF")
+        time.sleep(1)               # Đợi 1 giây
+
+# Kết thúc chương trình khi nhấn Ctrl+C
+except KeyboardInterrupt:
+    print("Program stopped")
+
+# Dọn dẹp tài nguyên GPIO
+finally:
+    GPIO.cleanup()
